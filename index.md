@@ -1,6 +1,6 @@
 ---
 layout: home  # 适配minima主题的首页布局
-title: 我的网站
+title: Renko的完美算数教室
 ---
 
 <html lang="zh-CN">
