@@ -1,4 +1,43 @@
-title: "renko06.top" 
-url: "https://renko06.top" 
-baseurl: "" 
+title: "Renko的完美算数教室"
+description: "数学笔记、读书记录与杂谈"
+url: "https://renko06.top"
+baseurl: ""
+lang: zh-CN
+timezone: America/Los_Angeles
 theme: minima
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+
+plugins:
+  - jekyll-feed
+
+collections:
+  notes:
+    output: true
+    permalink: /notes/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      author: Renko
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: note
+      author: Renko
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/og-default.png
+
+header_pages:
+  - notes.md
+  - blog.md
+  - about.md
