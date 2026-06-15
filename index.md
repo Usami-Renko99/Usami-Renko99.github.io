@@ -24,7 +24,7 @@ title: Home
     <span>关于我和这个网站</span>
   </a>
 </div>
-
+![cover](assets/images/home/homepage.jpg)
 ## Notes Categories
 
 {% for category in site.data.categories %}
