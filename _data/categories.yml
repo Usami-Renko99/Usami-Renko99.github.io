@@ -1,0 +1,32 @@
+- key: algebra
+  title: Algebra
+  zh: 代数
+  url: /notes/algebra/
+- key: commutative-algebra
+  title: Commutative Algebra
+  zh: 交换代数
+  url: /notes/commutative-algebra/
+- key: algebraic-geometry
+  title: Algebraic Geometry
+  zh: 代数几何
+  url: /notes/algebraic-geometry/
+- key: representation-theory
+  title: Representation Theory
+  zh: 表示论
+  url: /notes/representation-theory/
+- key: homological-algebra
+  title: Homological Algebra
+  zh: 同调代数
+  url: /notes/homological-algebra/
+- key: number-theory
+  title: Number Theory
+  zh: 数论
+  url: /notes/number-theory/
+- key: analysis
+  title: Analysis
+  zh: 分析
+  url: /notes/analysis/
+- key: misc
+  title: Miscellaneous
+  zh: 其他
+  url: /notes/misc/
