@@ -1,0 +1,48 @@
+---
+---
+
+@import "minima";
+
+body {
+  line-height: 1.75;
+}
+
+.site-title {
+  font-weight: 650;
+}
+
+.page-content {
+  padding-top: 2rem;
+}
+
+h1, h2, h3 {
+  font-weight: 650;
+}
+
+blockquote {
+  font-size: 1rem;
+  letter-spacing: 0;
+  color: #666;
+}
+
+.note-meta {
+  color: #777;
+  font-size: 0.95rem;
+}
+
+.tag {
+  white-space: nowrap;
+}
+
+.note-content theorem,
+.note-content .theorem {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid #ddd;
+  background: #fafafa;
+  margin: 1rem 0;
+}
+
+code {
+  font-size: 0.92em;
+}
