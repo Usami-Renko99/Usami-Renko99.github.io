@@ -1,413 +1,452 @@
 /* =========================================================
-Renko Academic Dark Theme
-A restrained dark theme for a mathematical personal website
-========================================================= */
+   Renko Academic Glass Theme
+   Inspired by glassmorphism academic blog style
+   ========================================================= */
 
-/* ---------- Color System ---------- */
+/* ---------- Root Variables ---------- */
 
 :root {
---bg: #111111;
---bg-soft: #171717;
---bg-card: #1c1c1c;
+  --bg: #0b0d12;
+  --bg-deep: #07080d;
 
---text: #e6e1d8;
---text-soft: #c8c1b7;
---muted: #8f887f;
+  --glass: rgba(20, 24, 32, 0.68);
+  --glass-light: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.14);
 
---accent: #d8b26e;
---accent-soft: #b8945e;
+  --text: #ebe7df;
+  --text-soft: #c9c2b8;
+  --muted: #938b80;
 
---link: #9ab7d3;
---link-hover: #c7d8e8;
+  --accent: #d7b46a;
+  --accent-soft: #b8965e;
 
---border: #34302a;
---border-soft: #26221e;
+  --link: #a9c7e8;
+  --link-hover: #d8eaff;
 
---code-bg: #181818;
---code-text: #e7d9c1;
-
---shadow: rgba(0, 0, 0, 0.35);
+  --shadow: rgba(0, 0, 0, 0.42);
 }
 
-/* ---------- Global ---------- */
+/* ---------- Global Background ---------- */
 
 html {
-background: var(--bg);
+  min-height: 100%;
+  background: var(--bg-deep);
 }
 
 body {
-margin: 0;
-padding: 0;
-background:
-radial-gradient(circle at top left, rgba(216, 178, 110, 0.06), transparent 32rem),
-var(--bg);
-color: var(--text);
-font-family:
-Georgia,
-"Times New Roman",
-"Noto Serif SC",
-"Songti SC",
-serif;
-font-size: 17px;
-line-height: 1.75;
-letter-spacing: 0.01em;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  color: var(--text);
+  font-family:
+    Georgia,
+    "Times New Roman",
+    "Noto Serif SC",
+    "Songti SC",
+    serif;
+  font-size: 17px;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+
+  background:
+    linear-gradient(rgba(7, 8, 13, 0.72), rgba(7, 8, 13, 0.86)),
+    radial-gradient(circle at 20% 10%, rgba(215, 180, 106, 0.18), transparent 28rem),
+    radial-gradient(circle at 80% 20%, rgba(120, 160, 220, 0.12), transparent 30rem),
+    var(--bg-deep);
+
+  background-attachment: fixed;
 }
 
-/* ---------- Layout Compatibility ---------- */
+/* 
+   如果你想用自己的背景图，把下面这一段取消注释，
+   然后把图片放到 assets/images/background.jpg
+
+body {
+  background:
+    linear-gradient(rgba(7, 8, 13, 0.62), rgba(7, 8, 13, 0.82)),
+    url("/assets/images/background.jpg") center center / cover fixed no-repeat;
+}
+*/
+
+/* ---------- Main Layout ---------- */
 
 .wrapper,
 .container,
 .page-content,
 main {
-max-width: 920px;
-margin: 0 auto;
-padding-left: 1.6rem;
-padding-right: 1.6rem;
+  max-width: 980px;
+  margin: 0 auto;
+  padding-left: 1.4rem;
+  padding-right: 1.4rem;
 }
 
 .page-content {
-padding-top: 2.4rem;
-padding-bottom: 3.5rem;
+  margin-top: 2.2rem;
+  margin-bottom: 3.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+
+  box-shadow:
+    0 18px 48px var(--shadow),
+    inset 0 1px 0 var(--glass-light);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* ---------- Header / Navigation ---------- */
 
 .site-header {
-background: rgba(17, 17, 17, 0.92);
-border-bottom: 1px solid var(--border-soft);
-backdrop-filter: blur(8px);
+  background: rgba(10, 12, 18, 0.62);
+  border-bottom: 1px solid var(--glass-border);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.28);
 }
 
 .site-title,
 .site-title:visited {
-color: var(--text);
-font-family:
-Georgia,
-"Times New Roman",
-"Noto Serif SC",
-serif;
-font-weight: 500;
-letter-spacing: 0.02em;
+  color: var(--text);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.site-title:hover {
+  color: var(--accent);
+  text-decoration: none;
 }
 
 .site-nav .page-link {
-color: var(--text-soft);
+  color: var(--text-soft);
+  transition: color 0.15s ease;
 }
 
 .site-nav .page-link:hover {
-color: var(--accent);
-text-decoration: none;
+  color: var(--accent);
+  text-decoration: none;
 }
 
 /* ---------- Headings ---------- */
 
 h1, h2, h3, h4, h5, h6 {
-color: var(--text);
-font-family:
-Georgia,
-"Times New Roman",
-"Noto Serif SC",
-serif;
-font-weight: 500;
-line-height: 1.35;
+  color: var(--text);
+  font-family:
+    Georgia,
+    "Times New Roman",
+    "Noto Serif SC",
+    serif;
+  font-weight: 500;
+  line-height: 1.35;
 }
 
 h1 {
-font-size: 2.25rem;
-margin-top: 0;
-margin-bottom: 1.3rem;
-padding-bottom: 0.45rem;
-border-bottom: 1px solid var(--border);
+  font-size: 2.25rem;
+  margin-top: 0;
+  margin-bottom: 1.3rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--glass-border);
 }
 
 h2 {
-font-size: 1.55rem;
-margin-top: 2.2rem;
-margin-bottom: 0.9rem;
-color: #eadfcf;
+  font-size: 1.55rem;
+  margin-top: 2.1rem;
+  color: #efe4d2;
 }
 
 h3 {
-font-size: 1.25rem;
-margin-top: 1.7rem;
-color: #ded4c8;
-}
-
-h4 {
-font-size: 1.05rem;
-color: var(--text-soft);
+  font-size: 1.25rem;
+  margin-top: 1.6rem;
+  color: #e1d6c7;
 }
 
 /* ---------- Text ---------- */
 
 p {
-margin: 0.8rem 0 1rem;
+  margin: 0.8rem 0 1rem;
 }
 
 strong {
-color: #f0e7db;
-font-weight: 600;
+  color: #fff1dc;
+  font-weight: 600;
 }
 
 em {
-color: #ddd2c3;
+  color: #ddd2c3;
 }
 
 small {
-color: var(--muted);
+  color: var(--muted);
 }
 
 /* ---------- Links ---------- */
 
 a {
-color: var(--link);
-text-decoration: none;
-transition: color 0.15s ease, border-color 0.15s ease;
+  color: var(--link);
+  text-decoration: none;
 }
 
 a:hover {
-color: var(--link-hover);
-text-decoration: underline;
-text-underline-offset: 3px;
+  color: var(--link-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 a:visited {
-color: #b7a9cc;
+  color: #c7b5db;
 }
 
 /* ---------- Lists ---------- */
 
 ul, ol {
-padding-left: 1.4rem;
+  padding-left: 1.4rem;
 }
 
 li {
-margin: 0.35rem 0;
+  margin: 0.35rem 0;
 }
 
 li::marker {
-color: var(--accent-soft);
+  color: var(--accent-soft);
 }
 
-/* ---------- Notes / Cards ---------- */
-
-.note-card,
-.post-card,
-.card {
-background: linear-gradient(180deg, var(--bg-card), var(--bg-soft));
-border: 1px solid var(--border);
-border-radius: 10px;
-padding: 1.05rem 1.2rem;
-margin: 1rem 0;
-box-shadow: 0 8px 24px var(--shadow);
-}
-
-.note-card h2,
-.note-card h3,
-.post-card h2,
-.post-card h3,
-.card h2,
-.card h3 {
-margin-top: 0;
-}
-
-.note-card a,
-.post-card a,
-.card a {
-font-weight: 500;
-}
-
-/* If your generated PDF list uses plain lists, this makes them look cleaner */
-.notes-list,
-.pdf-list {
-list-style: none;
-padding-left: 0;
-}
-
-.notes-list li,
-.pdf-list li {
-background: var(--bg-card);
-border: 1px solid var(--border-soft);
-border-radius: 8px;
-padding: 0.85rem 1rem;
-margin: 0.7rem 0;
-}
-
-/* ---------- PDF / Download Links ---------- */
-
-a[href$=".pdf"]::before {
-content: "PDF ";
-color: var(--accent);
-font-variant: small-caps;
-letter-spacing: 0.04em;
-}
-
-a[href$=".tex"]::before {
-content: "TeX ";
-color: var(--accent-soft);
-font-variant: small-caps;
-letter-spacing: 0.04em;
-}
-
-/* ---------- Code ---------- */
-
-code {
-background: var(--code-bg);
-color: var(--code-text);
-border: 1px solid var(--border-soft);
-border-radius: 4px;
-padding: 0.12rem 0.35rem;
-font-family:
-"Iosevka",
-"Cascadia Code",
-"Consolas",
-"SFMono-Regular",
-monospace;
-font-size: 0.92em;
-}
-
-pre {
-background: var(--code-bg);
-border: 1px solid var(--border);
-border-radius: 10px;
-padding: 1rem 1.1rem;
-overflow-x: auto;
-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.015);
-}
-
-pre code {
-background: transparent;
-border: none;
-padding: 0;
-color: var(--code-text);
-}
-
-/* ---------- Blockquote ---------- */
-
-blockquote {
-margin: 1.4rem 0;
-padding: 0.2rem 1.1rem;
-border-left: 3px solid var(--accent-soft);
-color: var(--text-soft);
-background: rgba(216, 178, 110, 0.035);
-}
-
-blockquote p {
-margin: 0.7rem 0;
-}
-
-/* ---------- Tables ---------- */
-
-table {
-width: 100%;
-border-collapse: collapse;
-margin: 1.4rem 0;
-font-size: 0.96rem;
-}
-
-th, td {
-border: 1px solid var(--border);
-padding: 0.55rem 0.7rem;
-}
-
-th {
-background: var(--bg-soft);
-color: #eadfcf;
-font-weight: 500;
-}
-
-td {
-background: rgba(28, 28, 28, 0.55);
-}
-
-/* ---------- Images ---------- */
-
-img {
-max-width: 100%;
-height: auto;
-border-radius: 8px;
-}
-
-.page-content img {
-display: block;
-margin: 1.4rem auto;
-border: 1px solid var(--border);
-box-shadow: 0 10px 30px var(--shadow);
-}
-
-/* ---------- Horizontal Rule ---------- */
-
-hr {
-border: none;
-border-top: 1px solid var(--border);
-margin: 2.2rem 0;
-}
-
-/* ---------- MathJax ---------- */
-
-mjx-container {
-color: var(--text);
-}
-
-mjx-container[display="true"] {
-margin: 1.4rem 0 !important;
-overflow-x: auto;
-overflow-y: hidden;
-}
-
-/* ---------- Footer ---------- */
-
-.site-footer {
-background: var(--bg);
-border-top: 1px solid var(--border-soft);
-color: var(--muted);
-}
-
-.footer-heading,
-.site-footer h2 {
-color: var(--text-soft);
-}
-
-.site-footer a {
-color: var(--link);
-}
-
-/* ---------- Selection ---------- */
-
-::selection {
-background: rgba(216, 178, 110, 0.28);
-color: #fff5e6;
-}
-
-/* ---------- Mobile ---------- */
-
-@media screen and (max-width: 720px) {
-body {
-font-size: 16px;
-}
-
-.wrapper,
-.container,
-.page-content,
-main {
-padding-left: 1.1rem;
-padding-right: 1.1rem;
-}
-
-h1 {
-font-size: 1.85rem;
-}
-
-h2 {
-font-size: 1.35rem;
-}
+/* ---------- Glass Cards ---------- */
 
 .note-card,
 .post-card,
 .card,
 .notes-list li,
 .pdf-list li {
-padding: 0.85rem 0.95rem;
-}
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+
+  padding: 1rem 1.15rem;
+  margin: 0.9rem 0;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    transform 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease;
 }
 
+.note-card:hover,
+.post-card:hover,
+.card:hover,
+.notes-list li:hover,
+.pdf-list li:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(215, 180, 106, 0.36);
+}
+
+.notes-list,
+.pdf-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* ---------- PDF / TeX Links ---------- */
+
+a[href$=".pdf"]::before {
+  content: "PDF ";
+  color: var(--accent);
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+a[href$=".tex"]::before {
+  content: "TeX ";
+  color: var(--accent-soft);
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Code ---------- */
+
+code {
+  background: rgba(0, 0, 0, 0.32);
+  color: #ecdcc1;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 5px;
+  padding: 0.13rem 0.36rem;
+
+  font-family:
+    "Iosevka",
+    "Cascadia Code",
+    "Consolas",
+    monospace;
+  font-size: 0.92em;
+}
+
+pre {
+  background: rgba(0, 0, 0, 0.38);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* ---------- Blockquote ---------- */
+
+blockquote {
+  margin: 1.4rem 0;
+  padding: 0.35rem 1.1rem;
+
+  color: var(--text-soft);
+  background: rgba(215, 180, 106, 0.06);
+  border-left: 3px solid var(--accent-soft);
+  border-radius: 0 10px 10px 0;
+}
+
+blockquote p {
+  margin: 0.7rem 0;
+}
+
+/* ---------- Tables ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4rem 0;
+  font-size: 0.96rem;
+}
+
+th, td {
+  border: 1px solid var(--glass-border);
+  padding: 0.55rem 0.7rem;
+}
+
+th {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f0dfc5;
+  font-weight: 500;
+}
+
+td {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+/* ---------- Images ---------- */
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.page-content img {
+  display: block;
+  margin: 1.4rem auto;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.34);
+}
+
+/* ---------- Horizontal Rule ---------- */
+
+hr {
+  border: none;
+  border-top: 1px solid var(--glass-border);
+  margin: 2.2rem 0;
+}
+
+/* ---------- MathJax ---------- */
+
+mjx-container {
+  color: var(--text);
+}
+
+mjx-container[display="true"] {
+  margin: 1.4rem 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  margin-top: 2rem;
+
+  background: rgba(10, 12, 18, 0.56);
+  border-top: 1px solid var(--glass-border);
+  color: var(--muted);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.footer-heading,
+.site-footer h2 {
+  color: var(--text-soft);
+}
+
+.site-footer a {
+  color: var(--link);
+}
+
+/* ---------- Selection ---------- */
+
+::selection {
+  background: rgba(215, 180, 106, 0.32);
+  color: #fff5e6;
+}
+
+/* ---------- Mobile ---------- */
+
+@media screen and (max-width: 720px) {
+body {
+  background:
+    linear-gradient(rgba(7, 8, 13, 0.62), rgba(7, 8, 13, 0.82)),
+    url("/assets/images/background.jpg") center center / cover fixed no-repeat;
+}
+
+  .wrapper,
+  .container,
+  .page-content,
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .page-content {
+    margin-top: 1.2rem;
+    border-radius: 14px;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
+
+  .note-card,
+  .post-card,
+  .card,
+  .notes-list li,
+  .pdf-list li {
+    padding: 0.85rem 0.95rem;
+  }
+}

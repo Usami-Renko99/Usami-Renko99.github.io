@@ -5,9 +5,8 @@ title: Home
 
 # 欢迎来到Renko的完美算数教室
 
-这里是我的个人主页。我目前主要关注数论、表示论、代数几何，也会放一些学习记录、二次元和杂谈。
->准备好成为幻想乡最强了吗
-![cover](assets/images/home/homepage.jpg)
+这里是我的个人主页。我主要关注数论、表示论、代数几何，也会放一些学习记录和杂谈。
+
 ## Main Sections
 
 <div class="grid">
