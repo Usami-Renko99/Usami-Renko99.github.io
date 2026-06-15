@@ -1,0 +1,11 @@
+{% assign note = include.note %}
+<article class="note-card">
+  <h3>{{ note.title }}</h3>
+  <p class="meta">
+    {{ note.category_title }}{% if note.updated %} · Updated {{ note.updated }}{% endif %}
+  </p>
+  <p class="note-actions">
+    {% if note.pdf_url %}<a class="button" href="{{ note.pdf_url | relative_url }}">PDF</a>{% endif %}
+    {% if note.tex_url %}<a class="button ghost" href="{{ note.tex_url | relative_url }}">TeX</a>{% endif %}
+  </p>
+</article>
