@@ -4,6 +4,23 @@ title: Notes
 permalink: /notes/
 ---
 
-这里的笔记采用 **TeX-first** 工作流：我只维护 `.tex` 源文件和编译后的 `.pdf`，网站自动扫描文件并生成索引。
+这里是我的数学笔记索引。网站采用 **PDF-first** 工作流：只要把 `.pdf` 上传到对应分类目录，Notes 页面就会自动显示；`.tex` 源文件只是可选项。
 
-上传规则：把文件放到 `assets/notes/<category>/`，同名的 `.pdf` 与 `.tex` 会被视作同一份笔记。
+推荐上传位置：
+
+```text
+assets/pdf/<category>/<filename>.pdf
+```
+
+例如：
+
+```text
+assets/pdf/algebraic-geometry/sheaves.pdf
+assets/pdf/representation-theory/characters.pdf
+```
+
+如果也想公开 TeX 源码，可以另外上传同名文件：
+
+```text
+assets/tex/algebraic-geometry/sheaves.tex
+```

@@ -3,23 +3,29 @@ layout: page
 title: Home
 ---
 
-# 欢迎来到Renko的完美算数教室，准备好成为幻想乡最强了吗
+# 恭喜你，发现了好东西
 
-这里是 **Renko的完美算数教室**。  
-我是数学系学生，目前主要兴趣在数论、表示论与代数几何。这个网站会用来整理数学笔记、读书记录、二次元内容，以及各类杂谈。
+这里是我的个人主页。我目前主要关注数论、表示论、代数几何，也会放一些学习记录、二次元和杂谈。
 
----
+## Main Sections
 
+<div class="grid">
+  <a class="tile" href="{{ '/notes/' | relative_url }}">
+    <strong>Notes</strong>
+    <span>TeX-first 数学笔记归档</span>
+  </a>
+  <a class="tile" href="{{ '/blog/' | relative_url }}">
+    <strong>Blog</strong>
+    <span>学习记录与杂谈</span>
+  </a>
+  <a class="tile" href="{{ '/about/' | relative_url }}">
+    <strong>About</strong>
+    <span>关于我和这个网站</span>
+  </a>
+</div>
 
-## 入口
+## Notes Categories
 
-###  [数学笔记](/notes/)
-长期维护的学习笔记。内容尽量保持结构化，偏向定义、动机、命题、证明与例子。
-
-###  [杂谈 / Blog](/blog/)
-一些短文章，包括读书记录、学习规划、数学史、二次元，以及偶尔的碎碎念。
-
-###  [About](/about/)
-关于我，以及这个网站为什么存在。
-
----
+{% for category in site.data.categories %}
+- [{{ category.title }} / {{ category.zh }}]({{ category.url | relative_url }})
+{% endfor %}

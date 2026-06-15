@@ -2,10 +2,11 @@
 <article class="note-card">
   <h3>{{ note.title }}</h3>
   <p class="meta">
-    {{ note.category_title }}{% if note.updated %} · Updated {{ note.updated }}{% endif %}
+    {{ note.category_title }}{% if note.updated %} · Updated {{ note.updated }}{% endif %}{% if note.pdf_size %} · {{ note.pdf_size }}{% endif %}
   </p>
   <p class="note-actions">
-    {% if note.pdf_url %}<a class="button" href="{{ note.pdf_url | relative_url }}">PDF</a>{% endif %}
+    <a class="button" href="{{ note.pdf_url | relative_url }}" target="_blank" rel="noopener">View PDF</a>
+    <a class="button ghost" href="{{ note.pdf_url | relative_url }}" download>Download</a>
     {% if note.tex_url %}<a class="button ghost" href="{{ note.tex_url | relative_url }}">TeX</a>{% endif %}
   </p>
 </article>
