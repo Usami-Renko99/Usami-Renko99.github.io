@@ -1,191 +1,413 @@
+/* =========================================================
+Renko Academic Dark Theme
+A restrained dark theme for a mathematical personal website
+========================================================= */
+
+/* ---------- Color System ---------- */
+
 :root {
-  --text: #24292f;
-  --muted: #6a737d;
-  --border: #d8dee4;
-  --bg: #ffffff;
-  --soft: #f6f8fa;
-  --link: #0969da;
-  --accent: #7c3aed;
+--bg: #111111;
+--bg-soft: #171717;
+--bg-card: #1c1c1c;
+
+--text: #e6e1d8;
+--text-soft: #c8c1b7;
+--muted: #8f887f;
+
+--accent: #d8b26e;
+--accent-soft: #b8945e;
+
+--link: #9ab7d3;
+--link-hover: #c7d8e8;
+
+--border: #34302a;
+--border-soft: #26221e;
+
+--code-bg: #181818;
+--code-text: #e7d9c1;
+
+--shadow: rgba(0, 0, 0, 0.35);
 }
 
-* { box-sizing: border-box; }
+/* ---------- Global ---------- */
+
+html {
+background: var(--bg);
+}
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Noto Sans SC", sans-serif;
-  line-height: 1.7;
-  color: var(--text);
-  background: var(--bg);
+margin: 0;
+padding: 0;
+background:
+radial-gradient(circle at top left, rgba(216, 178, 110, 0.06), transparent 32rem),
+var(--bg);
+color: var(--text);
+font-family:
+Georgia,
+"Times New Roman",
+"Noto Serif SC",
+"Songti SC",
+serif;
+font-size: 17px;
+line-height: 1.75;
+letter-spacing: 0.01em;
 }
 
-.container {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 0 22px;
-}
+/* ---------- Layout Compatibility ---------- */
 
-.site-header {
-  border-bottom: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.92);
-  position: sticky;
-  top: 0;
-  backdrop-filter: blur(8px);
+.wrapper,
+.container,
+.page-content,
+main {
+max-width: 920px;
+margin: 0 auto;
+padding-left: 1.6rem;
+padding-right: 1.6rem;
 }
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 64px;
-  gap: 24px;
-}
-
-.site-title {
-  font-weight: 700;
-  color: var(--text);
-  text-decoration: none;
-}
-
-.site-nav {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.site-nav a {
-  color: var(--muted);
-  text-decoration: none;
-}
-
-.site-nav a:hover { color: var(--link); }
 
 .page-content {
-  padding-top: 36px;
-  padding-bottom: 48px;
+padding-top: 2.4rem;
+padding-bottom: 3.5rem;
 }
 
-h1, h2, h3 {
-  line-height: 1.25;
+/* ---------- Header / Navigation ---------- */
+
+.site-header {
+background: rgba(17, 17, 17, 0.92);
+border-bottom: 1px solid var(--border-soft);
+backdrop-filter: blur(8px);
+}
+
+.site-title,
+.site-title:visited {
+color: var(--text);
+font-family:
+Georgia,
+"Times New Roman",
+"Noto Serif SC",
+serif;
+font-weight: 500;
+letter-spacing: 0.02em;
+}
+
+.site-nav .page-link {
+color: var(--text-soft);
+}
+
+.site-nav .page-link:hover {
+color: var(--accent);
+text-decoration: none;
+}
+
+/* ---------- Headings ---------- */
+
+h1, h2, h3, h4, h5, h6 {
+color: var(--text);
+font-family:
+Georgia,
+"Times New Roman",
+"Noto Serif SC",
+serif;
+font-weight: 500;
+line-height: 1.35;
 }
 
 h1 {
-  font-size: 2.25rem;
-  margin: 0 0 1.2rem;
+font-size: 2.25rem;
+margin-top: 0;
+margin-bottom: 1.3rem;
+padding-bottom: 0.45rem;
+border-bottom: 1px solid var(--border);
 }
 
 h2 {
-  margin-top: 2.4rem;
-  padding-bottom: 0.3rem;
-  border-bottom: 1px solid var(--border);
+font-size: 1.55rem;
+margin-top: 2.2rem;
+margin-bottom: 0.9rem;
+color: #eadfcf;
 }
 
-a { color: var(--link); }
+h3 {
+font-size: 1.25rem;
+margin-top: 1.7rem;
+color: #ded4c8;
+}
+
+h4 {
+font-size: 1.05rem;
+color: var(--text-soft);
+}
+
+/* ---------- Text ---------- */
+
+p {
+margin: 0.8rem 0 1rem;
+}
+
+strong {
+color: #f0e7db;
+font-weight: 600;
+}
+
+em {
+color: #ddd2c3;
+}
+
+small {
+color: var(--muted);
+}
+
+/* ---------- Links ---------- */
+
+a {
+color: var(--link);
+text-decoration: none;
+transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+a:hover {
+color: var(--link-hover);
+text-decoration: underline;
+text-underline-offset: 3px;
+}
+
+a:visited {
+color: #b7a9cc;
+}
+
+/* ---------- Lists ---------- */
+
+ul, ol {
+padding-left: 1.4rem;
+}
+
+li {
+margin: 0.35rem 0;
+}
+
+li::marker {
+color: var(--accent-soft);
+}
+
+/* ---------- Notes / Cards ---------- */
+
+.note-card,
+.post-card,
+.card {
+background: linear-gradient(180deg, var(--bg-card), var(--bg-soft));
+border: 1px solid var(--border);
+border-radius: 10px;
+padding: 1.05rem 1.2rem;
+margin: 1rem 0;
+box-shadow: 0 8px 24px var(--shadow);
+}
+
+.note-card h2,
+.note-card h3,
+.post-card h2,
+.post-card h3,
+.card h2,
+.card h3 {
+margin-top: 0;
+}
+
+.note-card a,
+.post-card a,
+.card a {
+font-weight: 500;
+}
+
+/* If your generated PDF list uses plain lists, this makes them look cleaner */
+.notes-list,
+.pdf-list {
+list-style: none;
+padding-left: 0;
+}
+
+.notes-list li,
+.pdf-list li {
+background: var(--bg-card);
+border: 1px solid var(--border-soft);
+border-radius: 8px;
+padding: 0.85rem 1rem;
+margin: 0.7rem 0;
+}
+
+/* ---------- PDF / Download Links ---------- */
+
+a[href$=".pdf"]::before {
+content: "PDF ";
+color: var(--accent);
+font-variant: small-caps;
+letter-spacing: 0.04em;
+}
+
+a[href$=".tex"]::before {
+content: "TeX ";
+color: var(--accent-soft);
+font-variant: small-caps;
+letter-spacing: 0.04em;
+}
+
+/* ---------- Code ---------- */
 
 code {
-  background: var(--soft);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 0.1rem 0.28rem;
+background: var(--code-bg);
+color: var(--code-text);
+border: 1px solid var(--border-soft);
+border-radius: 4px;
+padding: 0.12rem 0.35rem;
+font-family:
+"Iosevka",
+"Cascadia Code",
+"Consolas",
+"SFMono-Regular",
+monospace;
+font-size: 0.92em;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin: 24px 0;
+pre {
+background: var(--code-bg);
+border: 1px solid var(--border);
+border-radius: 10px;
+padding: 1rem 1.1rem;
+overflow-x: auto;
+box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.015);
 }
 
-.tile, .note-card {
-  display: block;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px;
-  text-decoration: none;
-  background: var(--bg);
+pre code {
+background: transparent;
+border: none;
+padding: 0;
+color: var(--code-text);
 }
 
-.tile:hover, .note-card:hover {
-  border-color: var(--accent);
+/* ---------- Blockquote ---------- */
+
+blockquote {
+margin: 1.4rem 0;
+padding: 0.2rem 1.1rem;
+border-left: 3px solid var(--accent-soft);
+color: var(--text-soft);
+background: rgba(216, 178, 110, 0.035);
 }
 
-.tile strong {
-  display: block;
-  font-size: 1.1rem;
-  color: var(--text);
+blockquote p {
+margin: 0.7rem 0;
 }
 
-.tile span, .meta, .muted {
-  color: var(--muted);
-  font-size: 0.95rem;
+/* ---------- Tables ---------- */
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.4rem 0;
+font-size: 0.96rem;
 }
 
-.note-section { margin-top: 32px; }
-.note-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
-  margin-top: 16px;
+th, td {
+border: 1px solid var(--border);
+padding: 0.55rem 0.7rem;
 }
 
-.note-card h3 {
-  margin-top: 0;
-  margin-bottom: 0.35rem;
+th {
+background: var(--bg-soft);
+color: #eadfcf;
+font-weight: 500;
 }
 
-.note-actions {
-  margin-bottom: 0;
-  display: flex;
-  gap: 10px;
+td {
+background: rgba(28, 28, 28, 0.55);
 }
 
-.button {
-  display: inline-block;
-  padding: 0.42rem 0.75rem;
-  border-radius: 8px;
-  background: var(--text);
-  color: white;
-  text-decoration: none;
-  font-size: 0.9rem;
+/* ---------- Images ---------- */
+
+img {
+max-width: 100%;
+height: auto;
+border-radius: 8px;
 }
 
-.button.ghost {
-  color: var(--text);
-  background: var(--soft);
-  border: 1px solid var(--border);
+.page-content img {
+display: block;
+margin: 1.4rem auto;
+border: 1px solid var(--border);
+box-shadow: 0 10px 30px var(--shadow);
 }
 
-.empty-state {
-  border: 1px dashed var(--border);
-  border-radius: 12px;
-  background: var(--soft);
-  padding: 20px;
-  margin-top: 20px;
+/* ---------- Horizontal Rule ---------- */
+
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.2rem 0;
 }
 
-.breadcrumb { color: var(--muted); }
+/* ---------- MathJax ---------- */
 
-.post-list {
-  padding-left: 0;
-  list-style: none;
+mjx-container {
+color: var(--text);
 }
 
-.post-list li {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
+mjx-container[display="true"] {
+margin: 1.4rem 0 !important;
+overflow-x: auto;
+overflow-y: hidden;
 }
+
+/* ---------- Footer ---------- */
 
 .site-footer {
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 0.9rem;
-  padding: 24px 0;
+background: var(--bg);
+border-top: 1px solid var(--border-soft);
+color: var(--muted);
 }
 
-@media (max-width: 640px) {
-  .header-inner { align-items: flex-start; flex-direction: column; padding: 14px 22px; }
-  h1 { font-size: 1.8rem; }
-  .post-list li { display: block; }
+.footer-heading,
+.site-footer h2 {
+color: var(--text-soft);
 }
+
+.site-footer a {
+color: var(--link);
+}
+
+/* ---------- Selection ---------- */
+
+::selection {
+background: rgba(216, 178, 110, 0.28);
+color: #fff5e6;
+}
+
+/* ---------- Mobile ---------- */
+
+@media screen and (max-width: 720px) {
+body {
+font-size: 16px;
+}
+
+.wrapper,
+.container,
+.page-content,
+main {
+padding-left: 1.1rem;
+padding-right: 1.1rem;
+}
+
+h1 {
+font-size: 1.85rem;
+}
+
+h2 {
+font-size: 1.35rem;
+}
+
+.note-card,
+.post-card,
+.card,
+.notes-list li,
+.pdf-list li {
+padding: 0.85rem 0.95rem;
+}
+}
+
