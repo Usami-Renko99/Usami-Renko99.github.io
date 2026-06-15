@@ -7,7 +7,7 @@ title: Home
 
 这里是我的个人主页。我目前主要关注数论、表示论、代数几何，也会放一些学习记录、二次元和杂谈。
 >准备好成为幻想乡最强了吗
-
+![cover](assets/images/home/homepage.jpg)
 ## Main Sections
 
 <div class="grid">
@@ -24,7 +24,7 @@ title: Home
     <span>关于我和这个网站</span>
   </a>
 </div>
-![cover](assets/images/home/homepage.jpg)
+
 ## Notes Categories
 
 {% for category in site.data.categories %}
