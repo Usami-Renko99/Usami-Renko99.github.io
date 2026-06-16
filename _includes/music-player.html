@@ -11,6 +11,7 @@
     <div class="music-window-actions">
       <a class="button ghost" href="{{ first_track.url | relative_url }}" download data-track-download>Download</a>
       <button class="music-toggle-button" type="button" data-player-toggle aria-expanded="false">List</button>
+      <button class="music-toggle-button" type="button" data-player-hide>Hide</button>
     </div>
   </div>
 
@@ -44,4 +45,5 @@
     {% endfor %}
   </ol>
 </section>
+<button class="music-player-launcher" type="button" data-player-launcher hidden>Music</button>
 {% endif %}

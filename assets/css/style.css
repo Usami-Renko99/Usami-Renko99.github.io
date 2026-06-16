@@ -503,7 +503,9 @@ li::marker {
 .music-window-actions {
   display: flex;
   flex: 0 0 auto;
+  flex-wrap: wrap;
   gap: 0.45rem;
+  justify-content: flex-end;
   cursor: auto;
 }
 
@@ -536,6 +538,41 @@ li::marker {
   color: #fff4df;
   background: rgba(215, 180, 106, 0.18);
   border-color: rgba(215, 180, 106, 0.44);
+}
+
+.music-player-launcher {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 41;
+
+  min-height: 2.35rem;
+  padding: 0.25rem 0.85rem;
+
+  color: #17130d;
+  background: var(--accent);
+  border: 1px solid rgba(255, 235, 186, 0.5);
+  border-radius: 999px;
+  cursor: pointer;
+
+  font: inherit;
+  font-size: 0.92rem;
+  line-height: 1.2;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26);
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.music-player-launcher:hover {
+  background: #efd08a;
+  border-color: rgba(255, 241, 204, 0.82);
+  transform: translateY(-1px);
 }
 
 .music-controls {
@@ -852,6 +889,11 @@ body {
     bottom: 0.65rem;
     width: calc(100vw - 1.3rem);
     padding: 0.75rem;
+  }
+
+  .music-player-launcher {
+    right: 0.65rem;
+    bottom: 0.65rem;
   }
 
   .music-player-header {

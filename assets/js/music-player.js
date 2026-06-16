@@ -47,8 +47,11 @@
     var meta = player.querySelector("[data-track-meta]");
     var download = player.querySelector("[data-track-download]");
     var toggleButton = player.querySelector("[data-player-toggle]");
+    var hideButton = player.querySelector("[data-player-hide]");
+    var launcherButton = document.querySelector("[data-player-launcher]");
     var tracks = Array.prototype.slice.call(player.querySelectorAll("[data-track]"));
     var savedState = readState();
+    var lastKnownPosition = savedState.position || null;
     var pendingSeek = 0;
     var lastSavedSecond = -1;
     var shouldAutoResume = false;
@@ -69,7 +72,8 @@
         currentTime: roundedTime,
         expanded: player.classList.contains("is-expanded"),
         wasPlaying: !audio.paused,
-        position: getPlayerPosition()
+        position: getPlayerPosition(),
+        hidden: player.hidden
       });
     }
 
@@ -99,15 +103,21 @@
 
     function getPlayerPosition() {
       if (player.dataset.hasCustomPosition !== "true") {
-        return savedState.position || null;
+        return lastKnownPosition;
+      }
+
+      if (player.hidden) {
+        return lastKnownPosition;
       }
 
       var rect = player.getBoundingClientRect();
 
-      return {
+      lastKnownPosition = {
         left: Math.round(rect.left),
         top: Math.round(rect.top)
       };
+
+      return lastKnownPosition;
     }
 
     function clampPosition(left, top) {
@@ -134,6 +144,22 @@
       player.style.right = "auto";
       player.style.bottom = "auto";
       player.dataset.hasCustomPosition = "true";
+      lastKnownPosition = {
+        left: Math.round(clamped.left),
+        top: Math.round(clamped.top)
+      };
+
+      if (shouldSave) {
+        saveState();
+      }
+    }
+
+    function setHidden(isHidden, shouldSave) {
+      player.hidden = isHidden;
+
+      if (launcherButton) {
+        launcherButton.hidden = !isHidden;
+      }
 
       if (shouldSave) {
         saveState();
@@ -321,6 +347,18 @@
       });
     }
 
+    if (hideButton) {
+      hideButton.addEventListener("click", function () {
+        setHidden(true, true);
+      });
+    }
+
+    if (launcherButton) {
+      launcherButton.addEventListener("click", function () {
+        setHidden(false, true);
+      });
+    }
+
     window.addEventListener("beforeunload", saveState);
     var savedTrack = tracks.find(function (track) {
       return track.dataset.src === savedState.src;
@@ -329,6 +367,7 @@
     setPlayerPosition(savedState.position, false);
     initDragging();
     setExpanded(Boolean(savedState.expanded), false);
+    setHidden(Boolean(savedState.hidden), false);
 
     if (Number(savedState.currentTime) > 0) {
       pendingSeek = Number(savedState.currentTime);
