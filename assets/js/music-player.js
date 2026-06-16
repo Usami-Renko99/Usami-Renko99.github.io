@@ -48,9 +48,11 @@
     var download = player.querySelector("[data-track-download]");
     var toggleButton = player.querySelector("[data-player-toggle]");
     var tracks = Array.prototype.slice.call(player.querySelectorAll("[data-track]"));
+    var savedState = readState();
     var pendingSeek = 0;
     var lastSavedSecond = -1;
     var shouldAutoResume = false;
+    var dragState = null;
 
     function getActiveTrack() {
       return tracks.find(function (track) {
@@ -66,7 +68,8 @@
         src: activeTrack ? activeTrack.dataset.src : audio.getAttribute("src"),
         currentTime: roundedTime,
         expanded: player.classList.contains("is-expanded"),
-        wasPlaying: !audio.paused
+        wasPlaying: !audio.paused,
+        position: getPlayerPosition()
       });
     }
 
@@ -92,6 +95,120 @@
       if (shouldSave) {
         saveState();
       }
+    }
+
+    function getPlayerPosition() {
+      if (player.dataset.hasCustomPosition !== "true") {
+        return savedState.position || null;
+      }
+
+      var rect = player.getBoundingClientRect();
+
+      return {
+        left: Math.round(rect.left),
+        top: Math.round(rect.top)
+      };
+    }
+
+    function clampPosition(left, top) {
+      var rect = player.getBoundingClientRect();
+      var margin = 10;
+      var maxLeft = Math.max(margin, window.innerWidth - rect.width - margin);
+      var maxTop = Math.max(margin, window.innerHeight - rect.height - margin);
+
+      return {
+        left: Math.min(Math.max(left, margin), maxLeft),
+        top: Math.min(Math.max(top, margin), maxTop)
+      };
+    }
+
+    function setPlayerPosition(position, shouldSave) {
+      if (!position || !Number.isFinite(position.left) || !Number.isFinite(position.top)) {
+        return;
+      }
+
+      var clamped = clampPosition(position.left, position.top);
+
+      player.style.left = clamped.left + "px";
+      player.style.top = clamped.top + "px";
+      player.style.right = "auto";
+      player.style.bottom = "auto";
+      player.dataset.hasCustomPosition = "true";
+
+      if (shouldSave) {
+        saveState();
+      }
+    }
+
+    function isInteractiveTarget(target) {
+      return Boolean(target.closest && target.closest("a, button, input, select, textarea, label"));
+    }
+
+    function initDragging() {
+      var handle = player.querySelector(".music-player-header");
+
+      if (!handle) {
+        return;
+      }
+
+      handle.addEventListener("pointerdown", function (event) {
+        if ((event.button !== undefined && event.button !== 0) || isInteractiveTarget(event.target)) {
+          return;
+        }
+
+        var rect = player.getBoundingClientRect();
+
+        dragState = {
+          pointerId: event.pointerId,
+          startX: event.clientX,
+          startY: event.clientY,
+          left: rect.left,
+          top: rect.top
+        };
+
+        player.classList.add("is-dragging");
+
+        if (handle.setPointerCapture) {
+          handle.setPointerCapture(event.pointerId);
+        }
+
+        event.preventDefault();
+      });
+
+      handle.addEventListener("pointermove", function (event) {
+        if (!dragState || event.pointerId !== dragState.pointerId) {
+          return;
+        }
+
+        setPlayerPosition({
+          left: dragState.left + event.clientX - dragState.startX,
+          top: dragState.top + event.clientY - dragState.startY
+        }, false);
+      });
+
+      function endDrag(event) {
+        if (!dragState || event.pointerId !== dragState.pointerId) {
+          return;
+        }
+
+        dragState = null;
+        player.classList.remove("is-dragging");
+
+        if (handle.releasePointerCapture) {
+          handle.releasePointerCapture(event.pointerId);
+        }
+
+        saveState();
+      }
+
+      handle.addEventListener("pointerup", endDrag);
+      handle.addEventListener("pointercancel", endDrag);
+
+      window.addEventListener("resize", function () {
+        if (player.dataset.hasCustomPosition === "true") {
+          setPlayerPosition(getPlayerPosition(), true);
+        }
+      });
     }
 
     function updateProgress() {
@@ -205,12 +322,12 @@
     }
 
     window.addEventListener("beforeunload", saveState);
-
-    var savedState = readState();
     var savedTrack = tracks.find(function (track) {
       return track.dataset.src === savedState.src;
     });
 
+    setPlayerPosition(savedState.position, false);
+    initDragging();
     setExpanded(Boolean(savedState.expanded), false);
 
     if (Number(savedState.currentTime) > 0) {

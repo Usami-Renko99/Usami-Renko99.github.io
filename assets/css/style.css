@@ -465,6 +465,13 @@ li::marker {
   justify-content: space-between;
   gap: 0.8rem;
   margin-bottom: 0.75rem;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.music-player.is-dragging .music-player-header {
+  cursor: grabbing;
 }
 
 .music-player-heading {
@@ -497,6 +504,7 @@ li::marker {
   display: flex;
   flex: 0 0 auto;
   gap: 0.45rem;
+  cursor: auto;
 }
 
 .music-window-actions .button {
