@@ -58,6 +58,72 @@ body {
   background-attachment: fixed;
 }
 
+/* ---------- Page Transitions ---------- */
+
+.has-page-transitions body {
+  animation: page-fade-in 280ms ease both;
+}
+
+.has-page-transitions .site-header,
+.has-page-transitions .page-content,
+.has-page-transitions .site-footer {
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    filter 220ms ease;
+}
+
+.has-page-transitions .page-content {
+  animation: content-rise-in 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.has-page-transitions body.is-page-leaving .site-header,
+.has-page-transitions body.is-page-leaving .site-footer {
+  opacity: 0;
+  transform: translateY(-0.35rem);
+}
+
+.has-page-transitions body.is-page-leaving .page-content {
+  opacity: 0;
+  transform: translateY(0.7rem) scale(0.985);
+  filter: blur(4px);
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes content-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.8rem) scale(0.99);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .has-page-transitions body,
+  .has-page-transitions .page-content {
+    animation: none;
+  }
+
+  .has-page-transitions .site-header,
+  .has-page-transitions .page-content,
+  .has-page-transitions .site-footer {
+    transition: none;
+  }
+}
+
 /* 
    如果你想用自己的背景图，把下面这一段取消注释，
    然后把图片放到 assets/images/background.jpg
