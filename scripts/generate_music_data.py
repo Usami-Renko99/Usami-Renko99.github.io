@@ -88,7 +88,7 @@ def scan_music() -> list[dict[str, str]]:
 def main() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     tracks = scan_music()
-    OUT_FILE.write_text(json.dumps(tracks, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    OUT_FILE.write_text(json.dumps(tracks, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
     print(f"Generated {OUT_FILE.relative_to(ROOT)} with {len(tracks)} music tracks.")
 
 
