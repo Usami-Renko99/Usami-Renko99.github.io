@@ -134,19 +134,25 @@ def scan_files(roots: list[Path], suffix: str) -> dict[tuple[str, str], Path]:
     return found
 
 
+def normalized_lookup(files: dict[tuple[str, str], Path]) -> dict[tuple[str, str], Path]:
+    """Return a case-insensitive lookup for matching sibling PDF/TeX files."""
+    return {(category.casefold(), slug.casefold()): path for (category, slug), path in files.items()}
+
+
 def main() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     categories = read_categories()
 
     pdfs = scan_files(PDF_ROOTS, ".pdf")
     texs = scan_files(TEX_ROOTS, ".tex")
+    texs_normalized = normalized_lookup(texs)
 
     # PDF-first: a note is published only when a PDF exists. TeX is optional and
     # attached only if it shares the same category and slug.
     notes = []
     for category, slug in sorted(pdfs.keys()):
         pdf = pdfs[(category, slug)]
-        tex = texs.get((category, slug))
+        tex = texs.get((category, slug)) or texs_normalized.get((category.casefold(), slug.casefold()))
         cat = categories.get(category, {})
         category_title = cat.get("title", category.replace("-", " ").title())
         updated = git_last_date(pdf) or mtime_date(pdf)

@@ -325,6 +325,68 @@ li::marker {
   padding-left: 0;
 }
 
+/* ---------- Note Actions ---------- */
+
+.note-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.button,
+.button:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.15rem;
+  padding: 0.2rem 0.8rem;
+
+  color: #17130d;
+  background: var(--accent);
+  border: 1px solid rgba(255, 235, 186, 0.5);
+  border-radius: 7px;
+
+  font-size: 0.92rem;
+  line-height: 1.2;
+  text-decoration: none;
+
+  box-shadow:
+    0 7px 18px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26);
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.button:hover {
+  color: #0f0c08;
+  background: #efd08a;
+  border-color: rgba(255, 241, 204, 0.82);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.button.ghost,
+.button.ghost:visited {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--glass-border);
+}
+
+.button.ghost:hover {
+  color: #fff4df;
+  background: rgba(215, 180, 106, 0.18);
+  border-color: rgba(215, 180, 106, 0.44);
+}
+
+.button[href$=".pdf"]::before,
+.button[href$=".tex"]::before {
+  content: none;
+}
+
 /* ---------- PDF / TeX Links ---------- */
 
 a[href$=".pdf"]::before {
