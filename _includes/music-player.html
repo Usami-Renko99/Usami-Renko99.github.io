@@ -1,0 +1,50 @@
+{% assign tracks = site.data.music %}
+{% assign first_track = tracks | first %}
+<section class="music-player" data-music-player>
+  <div class="music-player-header">
+    <div>
+      <h3>Music</h3>
+      <p class="meta" data-track-meta>{% if first_track %}{{ first_track.size }}{% else %}No tracks yet.{% endif %}</p>
+    </div>
+    {% if first_track %}
+      <a class="button ghost" href="{{ first_track.url | relative_url }}" download data-track-download>Download</a>
+    {% endif %}
+  </div>
+
+  {% if first_track %}
+    <audio preload="metadata" src="{{ first_track.url | relative_url }}" data-audio></audio>
+    <div class="music-now">
+      <strong data-track-title>{{ first_track.title }}</strong>
+    </div>
+    <div class="music-controls">
+      <button class="music-play-button" type="button" data-play-button aria-label="Play">Play</button>
+      <div class="music-timeline">
+        <input class="music-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Track progress" data-progress>
+        <div class="music-time">
+          <time data-current-time>0:00</time>
+          <time data-duration>0:00</time>
+        </div>
+      </div>
+    </div>
+    <ol class="music-list">
+      {% for track in tracks %}
+        <li>
+          <button
+            class="music-track{% if forloop.first %} is-active{% endif %}"
+            type="button"
+            data-track
+            data-src="{{ track.url | relative_url }}"
+            data-title="{{ track.title | escape }}"
+            data-size="{{ track.size | escape }}"
+            data-download="{{ track.url | relative_url }}"
+          >
+            <span>{{ track.title }}</span>
+            <small>{{ track.size }}</small>
+          </button>
+        </li>
+      {% endfor %}
+    </ol>
+  {% else %}
+    <p class="music-empty">No music has been uploaded yet.</p>
+  {% endif %}
+</section>

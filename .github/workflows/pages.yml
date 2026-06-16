@@ -35,6 +35,9 @@ jobs:
       - name: Generate notes index from PDF files
         run: python3 scripts/generate_notes_data.py
 
+      - name: Generate music index from uploaded audio files
+        run: python3 scripts/generate_music_data.py
+
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:

@@ -24,6 +24,8 @@ title: Home
   </a>
 </div>
 
+{% include music-player.html %}
+
 ## Notes Categories
 
 {% for category in site.data.categories %}

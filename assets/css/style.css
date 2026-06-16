@@ -321,6 +321,53 @@ li::marker {
   padding-left: 0;
 }
 
+/* ---------- Home Sections ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.85rem;
+  margin: 1.2rem 0 1.6rem;
+}
+
+.tile,
+.tile:visited {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-height: 5.8rem;
+  padding: 1rem 1.1rem;
+
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  text-decoration: none;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  transition:
+    transform 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease;
+}
+
+.tile:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(215, 180, 106, 0.36);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.tile span {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
 /* ---------- Note Actions ---------- */
 
 .note-actions {
@@ -381,6 +428,162 @@ li::marker {
 .button[href$=".pdf"]::before,
 .button[href$=".tex"]::before {
   content: none;
+}
+
+/* ---------- Music Player ---------- */
+
+.music-player {
+  margin: 1.6rem 0 2rem;
+  padding: 1.05rem 1.15rem;
+
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.music-player-header,
+.music-controls,
+.music-time {
+  display: flex;
+  align-items: center;
+}
+
+.music-player-header {
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.music-player h3 {
+  margin: 0;
+}
+
+.music-player .meta {
+  margin: 0.1rem 0 0;
+}
+
+.music-now {
+  margin-bottom: 0.8rem;
+}
+
+.music-now strong {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.music-controls {
+  gap: 0.8rem;
+}
+
+.music-play-button {
+  flex: 0 0 auto;
+  min-width: 4.8rem;
+  min-height: 2.3rem;
+  padding: 0.2rem 0.8rem;
+
+  color: #17130d;
+  background: var(--accent);
+  border: 1px solid rgba(255, 235, 186, 0.5);
+  border-radius: 7px;
+  cursor: pointer;
+
+  font: inherit;
+  font-size: 0.92rem;
+  line-height: 1.2;
+
+  box-shadow:
+    0 7px 18px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26);
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.music-play-button:hover {
+  background: #efd08a;
+  border-color: rgba(255, 241, 204, 0.82);
+  transform: translateY(-1px);
+}
+
+.music-timeline {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.music-progress {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.music-time {
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.2;
+}
+
+.music-list {
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.music-list li {
+  margin: 0;
+}
+
+.music-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  width: 100%;
+  min-height: 2.65rem;
+  padding: 0.45rem 0.65rem;
+
+  color: var(--text-soft);
+  background: rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+
+  font: inherit;
+  text-align: left;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.music-track:hover,
+.music-track.is-active {
+  color: var(--text);
+  background: rgba(215, 180, 106, 0.12);
+  border-color: rgba(215, 180, 106, 0.36);
+}
+
+.music-track span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.music-track small {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.music-empty {
+  color: var(--muted);
 }
 
 /* ---------- PDF / TeX Links ---------- */
@@ -572,5 +775,20 @@ body {
   .notes-list li,
   .pdf-list li {
     padding: 0.85rem 0.95rem;
+  }
+
+  .music-player {
+    padding: 0.9rem;
+  }
+
+  .music-player-header,
+  .music-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .music-player-header .button,
+  .music-play-button {
+    width: 100%;
   }
 }
