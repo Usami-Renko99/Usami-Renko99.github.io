@@ -124,16 +124,12 @@ body {
   }
 }
 
-/* 
-   如果你想用自己的背景图，把下面这一段取消注释，
-   然后把图片放到 assets/images/background.jpg
-
 body {
   background:
     linear-gradient(rgba(7, 8, 13, 0.62), rgba(7, 8, 13, 0.82)),
     url("/assets/images/background.jpg") center center / cover fixed no-repeat;
 }
-*/
+
 
 /* ---------- Main Layout ---------- */
 
