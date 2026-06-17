@@ -82,6 +82,39 @@ date: 2026-06-17 20:00:00 +0800
 这里开始写正文。
 ```
 
+如果你忘了写 front matter，也可以只把文章放进 `_posts/`。部署时 GitHub Actions 会自动运行：
+
+```bash
+python3 scripts/ensure_post_front_matter.py
+```
+
+这个脚本只会处理 `_posts/` 里缺少 front matter 的 `.md` / `.markdown` 文件，已经有 front matter 的文章不会被改动。自动生成的 front matter 形如：
+
+```markdown
+---
+layout: post
+title: "文章标题"
+date: "2026-06-17 00:00:00 +0800"
+cover: /assets/images/blog/english-slug.jpg
+cover_alt: "" # 可选的封面说明
+cover_caption: "" # 可选的封面题注
+---
+```
+
+自动规则：
+
+- `title` 优先取正文里的第一个一级标题，例如 `# 我的文章`；
+- 如果正文没有一级标题，就从文件名生成标题；
+- `date` 优先取文件名开头的 `YYYY-MM-DD`；
+- `cover` 默认指向 `/assets/images/blog/<slug>.jpg`；
+- 如果这个封面图片不存在，页面不会显示破图；之后把同名图片放进 `assets/images/blog/`，封面就会自动出现。
+
+你也可以在本地手动运行脚本，让 front matter 直接写回文件：
+
+```bash
+python3 scripts/ensure_post_front_matter.py
+```
+
 发布后，Blog 列表会在 `/blog/` 显示文章，文章链接通常形如：
 
 ```text
@@ -114,7 +147,8 @@ cover_caption: "可选的封面题注"
 - `cover` 是封面图片路径；
 - `cover_alt` 是图片替代文本，建议写；
 - `cover_caption` 是封面下方题注，可写可不写；
-- 没有 `cover` 的文章也会正常显示，只是不显示封面。
+- 没有 `cover` 的文章也会正常显示，只是不显示封面；
+- 如果 `cover` 指向的本地图片不存在，网站也不会显示破图。
 
 ## Blog 日期、时区和缓存
 

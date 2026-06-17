@@ -32,6 +32,9 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: true
 
+      - name: Ensure blog post front matter
+        run: python3 scripts/ensure_post_front_matter.py
+
       - name: Generate notes index from PDF files
         run: python3 scripts/generate_notes_data.py
 

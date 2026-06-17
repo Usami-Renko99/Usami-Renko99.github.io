@@ -5,9 +5,12 @@ layout: default
   <h1>{{ page.title }}</h1>
   <p class="meta">{{ page.date | date: "%Y-%m-%d" }}</p>
   {% if page.cover %}
+    {% assign cover_file = site.static_files | where: "path", page.cover | first %}
+  {% endif %}
+  {% if page.cover and cover_file %}
     <figure class="post-cover">
       <img src="{{ page.cover | relative_url }}" alt="{{ page.cover_alt | default: page.title | escape }}">
-      {% if page.cover_caption %}
+      {% if page.cover_caption and page.cover_caption != "" %}
         <figcaption>{{ page.cover_caption }}</figcaption>
       {% endif %}
     </figure>

@@ -9,6 +9,9 @@ permalink: /blog/
     {% for post in site.posts %}
       <article class="post-card">
         {% if post.cover %}
+          {% assign cover_file = site.static_files | where: "path", post.cover | first %}
+        {% endif %}
+        {% if post.cover and cover_file %}
           <a class="post-card-cover" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
             <img
               src="{{ post.cover | relative_url }}"
