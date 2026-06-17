@@ -5,14 +5,30 @@ permalink: /blog/
 ---
 
 {% if site.posts.size > 0 %}
-  <ul class="post-list">
+  <div class="post-list">
     {% for post in site.posts %}
-      <li>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <span class="meta">{{ post.date | date: "%Y-%m-%d" }}</span>
-      </li>
+      <article class="post-card">
+        {% if post.cover %}
+          <a class="post-card-cover" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
+            <img
+              src="{{ post.cover | relative_url }}"
+              alt="{{ post.cover_alt | default: post.title | escape }}"
+              loading="lazy"
+            >
+          </a>
+        {% endif %}
+        <div class="post-card-body">
+          <h2 class="post-card-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h2>
+          <p class="meta">{{ post.date | date: "%Y-%m-%d" }}</p>
+          {% if post.excerpt %}
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+          {% endif %}
+        </div>
+      </article>
     {% endfor %}
-  </ul>
+  </div>
 {% else %}
   <p>暂时还没有文章。</p>
 {% endif %}

@@ -4,5 +4,13 @@ layout: default
 <article class="post">
   <h1>{{ page.title }}</h1>
   <p class="meta">{{ page.date | date: "%Y-%m-%d" }}</p>
+  {% if page.cover %}
+    <figure class="post-cover">
+      <img src="{{ page.cover | relative_url }}" alt="{{ page.cover_alt | default: page.title | escape }}">
+      {% if page.cover_caption %}
+        <figcaption>{{ page.cover_caption }}</figcaption>
+      {% endif %}
+    </figure>
+  {% endif %}
   {{ content }}
 </article>
