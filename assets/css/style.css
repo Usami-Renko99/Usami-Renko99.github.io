@@ -866,6 +866,17 @@ img {
   font-size: 0.98rem;
 }
 
+.post-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0.4rem 0 1.2rem;
+}
+
+.post-actions-bottom {
+  margin: 2rem 0 0;
+}
+
 .post-cover {
   margin: 1.2rem 0 1.8rem;
 }

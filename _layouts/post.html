@@ -4,6 +4,9 @@ layout: default
 <article class="post">
   <h1>{{ page.title }}</h1>
   <p class="meta">{{ page.date | date: "%Y-%m-%d" }}</p>
+  <nav class="post-actions" aria-label="Post navigation">
+    <a class="button ghost" href="{{ '/blog/' | relative_url }}">&larr; 返回 Blog</a>
+  </nav>
   {% if page.cover %}
     {% assign cover_file = site.static_files | where: "path", page.cover | first %}
   {% endif %}
@@ -16,4 +19,7 @@ layout: default
     </figure>
   {% endif %}
   {{ content }}
+  <nav class="post-actions post-actions-bottom" aria-label="Post navigation">
+    <a class="button ghost" href="{{ '/blog/' | relative_url }}">&larr; 返回 Blog</a>
+  </nav>
 </article>
