@@ -49,6 +49,104 @@ Sheaves
 View PDF | Download | TeX
 ```
 
+## 发布 Blog 文章
+
+Blog 文章放在 `_posts/` 目录里，文件名必须使用 Jekyll 规定的格式：
+
+```text
+_posts/YYYY-MM-DD-english-slug.md
+```
+
+例如：
+
+```text
+_posts/2026-06-17-math-review-and-outlook.md
+```
+
+注意：
+
+- 文件名开头必须是 `YYYY-MM-DD-`，否则 Jekyll 不会把它当作 blog 文章；
+- 建议 slug 使用小写英文和连字符，不要使用空格或中文；
+- 文件开头必须有 front matter，并且 `---` 必须从第一行开始；
+- 如果 `date` 写在未来，GitHub Pages 默认不会显示这篇文章。
+
+最小文章模板：
+
+```markdown
+---
+layout: post
+title: "文章标题"
+date: 2026-06-17 20:00:00 +0800
+---
+
+这里开始写正文。
+```
+
+发布后，Blog 列表会在 `/blog/` 显示文章，文章链接通常形如：
+
+```text
+/YYYY/MM/DD/english-slug.html
+```
+
+## Blog 封面图
+
+封面图建议放在：
+
+```text
+assets/images/blog/
+```
+
+然后在文章 front matter 里加入：
+
+```markdown
+---
+layout: post
+title: "文章标题"
+date: 2026-06-17 20:00:00 +0800
+cover: /assets/images/blog/my-cover.jpg
+cover_alt: "封面说明"
+cover_caption: "可选的封面题注"
+---
+```
+
+说明：
+
+- `cover` 是封面图片路径；
+- `cover_alt` 是图片替代文本，建议写；
+- `cover_caption` 是封面下方题注，可写可不写；
+- 没有 `cover` 的文章也会正常显示，只是不显示封面。
+
+## Blog 日期、时区和缓存
+
+当前 `_config.yml` 里配置的是：
+
+```yml
+timezone: America/Los_Angeles
+```
+
+所以即使文章 front matter 里写了北京时间，例如：
+
+```markdown
+date: 2026-06-17 14:40:00 +0800
+```
+
+网站上也可能显示为洛杉矶日期，比如 `2026-06-16`。如果希望 Blog 日期和链接都按北京时间生成，可以改成：
+
+```yml
+timezone: Asia/Shanghai
+```
+
+如果 push 后线上暂时看不到文章，先检查：
+
+1. GitHub Actions 是否构建成功；
+2. 文章是否在 `_posts/` 目录；
+3. 文件名是否是 `YYYY-MM-DD-title.md`；
+4. front matter 是否从第一行开始；
+5. `date` 是否不是未来时间；
+6. 浏览器或 GitHub Pages 缓存是否还没刷新。
+
+GitHub Pages 可能缓存几分钟。如果你确认线上 HTML 已经更新，但浏览器还没显示，可以尝试 `Ctrl + F5` 强制刷新，或者用无痕窗口打开。
+
 ## 已有分类目录
 
 ```text
