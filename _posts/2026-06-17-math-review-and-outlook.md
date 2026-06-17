@@ -2,6 +2,7 @@
 layout: post
 title: "数学知识的回顾与展望"
 date: 2026-06-17 14:40:00 +0800
+cover: /assets/images/blog/aya1.jpg
 ---
 
 这里整理一下我之前学过的数学知识以及之后的展望:
