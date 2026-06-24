@@ -150,6 +150,50 @@ cover_caption: "可选的封面题注"
 - 没有 `cover` 的文章也会正常显示，只是不显示封面；
 - 如果 `cover` 指向的本地图片不存在，网站也不会显示破图。
 
+## Blog 附件 PDF
+
+如果 PDF 只是 blog 的附件，不是正式数学笔记，不要放进 `assets/pdf/<category>/`，否则可能被 Notes 系统收录。建议放在：
+
+```text
+assets/files/blog/
+```
+
+例如：
+
+```text
+assets/files/blog/example-handout.pdf
+```
+
+在 blog 正文里放普通链接：
+
+```markdown
+[查看 PDF](/assets/files/blog/example-handout.pdf)
+```
+
+如果想直接嵌入预览，可以写：
+
+```html
+<iframe
+  class="blog-pdf-embed"
+  src="/assets/files/blog/example-handout.pdf"
+  title="Example handout PDF"
+></iframe>
+```
+
+也可以链接和预览一起放：
+
+```markdown
+[查看 PDF](/assets/files/blog/example-handout.pdf)
+
+<iframe
+  class="blog-pdf-embed"
+  src="/assets/files/blog/example-handout.pdf"
+  title="Example handout PDF"
+></iframe>
+```
+
+文件名仍然建议使用小写英文和连字符，不要使用空格或中文。
+
 ## Blog 日期、时区和缓存
 
 当前 `_config.yml` 里配置的是：
