@@ -11,11 +11,11 @@ cover: /assets/images/blog/秘封.jpg
 如果你想要进入数学系，我的建议是先尝试弄明白epsilon-delta语言，第一次看不懂没关系，可以多尝试几次，然后翻译成自然语言（毕竟你脑子里思考肯定想的是中文而不是全称量词和存在量词的符号），然后实数完备性定理可以暂时不看（因为你看了也不知道在干什么）。后面的导数、积分、微分方程我的建议是随便找个微积分教材都行，我高中就是用同济高数自学的微积分。
 当然，最好是复习一下高一学的集合论，ZFC集合论我感觉先没必要学，抽象代数可以学一下，当然如果你说你不想暑假自学那也没问题，高考完了可以好好玩一下，好好出去旅游，或者打游戏也可以（实在不行你打舞萌也可以）。高三已经够累了，如果你学不下去了那就好好放松一下，没关系的。
 好吧说回正题，别的学校我可能不太清楚，但是在CUHK，数学专业主要分成四个方向，理论数学、应用数学、金融数学、数学建模与人工智能，下面是各个方向的必修课：
-[查看 PDF](assets\files\blog\Study Scheme - MATH_2024-25 and thereafter_Circular (AB2025_C015).pdf)
+[查看 PDF](/assets/files/blog/Study%20Scheme%20-%20MATH_2024-25%20and%20thereafter_Circular%20%28AB2025_C015%29.pdf)
 
 <iframe
   class="blog-pdf-embed"
-  src="/assets/files/blog/Study Scheme - MATH_2024-25 and thereafter_Circular (AB2025_C015).pdf"
+  src="/assets/files/blog/Study%20Scheme%20-%20MATH_2024-25%20and%20thereafter_Circular%20%28AB2025_C015%29.pdf"
   title="Study Scheme - MATH_2024-25 and thereafter_Circular (AB2025_C015)"
 ></iframe>
 
